@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @Configuration
 @EnableScheduling
-@PropertySource(value = "file:${app_properties_filepath}", ignoreResourceNotFound = false)
+//@PropertySource(value = "file:${app_properties_filepath}", ignoreResourceNotFound = false)
 @ConfigurationProperties
 public class AppConfig {
 }
