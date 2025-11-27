@@ -1,0 +1,14 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "username": "mts_sbp",
+    "access_token_key": "21801956-f348-4541-ba4a-25096cf19539"
+  },
+  "id": 309739214,
+  "status": true,
+  "origin": "login",
+  "host": {
+    "host": "mts.unired.uz",
+    "timestamp": "2022-10-18 21:00:00.325772"
+  }
+}

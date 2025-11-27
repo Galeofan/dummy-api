@@ -1,0 +1,96 @@
+{
+  "endpointMocks": [
+    {
+      "serviceName": "universalbank-sbp",
+      "endpointUrl": "/universalbank_sbp/login",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "login"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_universalbank-sbp/login.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "universalbank-sbp",
+      "endpointUrl": "/universalbank_sbp/check",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\\d{12}"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./src/main/resources/response/universalbank-sbp_check.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "universalbank-sbp",
+      "endpointUrl": "/universalbank_sbp/pay",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "transfer"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 2000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_universalbank-sbp/transfer.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "universalbank-sbp",
+      "endpointUrl": "/universalbank_sbp/status",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "transfer.check"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 40000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_universalbank-sbp/transfer_check.json"
+          }
+        }
+      ]
+    }
+  ]
+}

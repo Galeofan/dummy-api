@@ -1,0 +1,25 @@
+{
+  "json": "2.0",
+  "result": {
+    "tr_id": "309740442",
+    "receiver": {
+      "card_number": "860048******4950",
+      "credit_amount": 72765,
+      "currency": "UZS",
+      "state": 4,
+      "tr_timestamp": "2022-10-19 13:40:36"
+    },
+    "exchange": {
+      "amount": 411.1,
+      "rate": 177.0,
+      "currency": "RUB"
+    }
+  },
+  "id": 309740442,
+  "status": true,
+  "origin": "transfer.check",
+  "host": {
+    "host": "mts.unired.uz",
+    "timestamp": "2022-10-19 13:41:44.011515"
+  }
+}

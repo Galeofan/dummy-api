@@ -1,0 +1,34 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+	"owner": "MUKADAMKHON ULMASOVA",
+	"card_number": "986018******4846",
+	"bank": "Trastbank",
+	"Residence": "UZ",
+	"Account": "226184917938946313389281",
+	"fundsType": "BnkFulAth",
+	"state": 0,
+	"limits": {
+	    "amount": 99999000000,
+	    "count": 999999
+	},
+	"exchange": {
+	    "amount": 15632.0,
+	    "rate": 0.0069444444,
+	    "": 144.0,
+	    "currency": "RUB"
+	},
+	"credit_exchange": {
+	    "credit_amount": 2251008.01,
+	    "commission": 216.0,
+	    "currency": "UZS"
+	}
+    },
+    "id": 2213007417,
+    "status": true,
+    "origin": "transfer.info",
+    "host": {
+	"host": "sbp.unired.uz",
+	"timestamp": "2024-07-29 01:29:42.909628"
+    }
+}

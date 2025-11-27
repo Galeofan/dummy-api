@@ -1,0 +1,3542 @@
+//Main config
+{
+  "endpointMocks": [
+    {
+      "serviceName": "pdn_tele2_token",
+      "endpointUrl": "/pdn/auth",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tele2/token_success.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "pdn_tele",
+      "endpointUrl": "/pdn",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tele2/pdn.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "keycloak",
+      "endpointUrl": "/b/keycloak",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_keycloak/success"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "pc-gateway",
+      "endpointUrl": "/integration/pc-gateway/v1/requests",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_pc-gateway/success"
+          }
+        }
+      ]
+    },
+//    {
+//      "serviceName": "profitable",
+//      "endpointUrl": "/profitable/services",
+//      "enable": true,
+//      "specificMockSettings": [
+//        {
+//          "enable": true,
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": false,
+//              "sleepMs": 6000
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_profitable/services_prod.json"
+//          }
+//        }
+//      ]
+//    },
+//    {
+//      "serviceName": "profitable",
+//      "endpointUrl": "/profitable/check",
+//      "enable": true,
+//      "specificMockSettings": [
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "testsuccess"
+//              "\\btestsuccess\\b"
+//              "^(?=.*\\b1111111111\\b)(?=.*\\bnmtcheck\\b).*$"
+//              "^(?=.*\\b1111111111\\b)(?=.*\\bnmtcheck\\b).*$", "^(?=.*\\b2222222222\\b)(?=.*\\bnmtcheck\\b).*$"
+//              "^(?!.*\\b1111111111\\b.*\\bnmtcheck\\b)(?!.*\\b2222222222\\b.*\\bnmtcheck\\b).*$"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": false,
+//              "sleepMs": 6000
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./src/main/resources/response/profitable_success.json"
+//          }
+//        },
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "testerror", "^(?=.*\\b1111111111\\b).*$"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": false,
+//              "sleepMs": 6000
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./src/main/resources/response/profitable_error.json"
+//          }
+//        }
+//      ]
+//    },
+//    {
+//      "serviceName": "profitable",
+//      "endpointUrl": "/profitable/pay",
+//      "enable": true,
+//      "specificMockSettings": [
+//        {
+//          "enable": true,
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": false,
+//              "sleepMs": 6000
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_profitable/pay.json"
+//          }
+//        }
+//      ]
+//    },
+    {
+      "serviceName": "maxipay",
+      "endpointUrl": "/b/external/multi/maxipay/services",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_maxipay/services_prod.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "maxipay",
+      "endpointUrl": "/b/external/multi/maxipay/check",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "a"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_maxipay/check_USD.json"
+          }
+        },
+        {
+          "enable": false,
+          "requestMockConditions": {
+            "containsValue": [
+              "testerror"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_maxipay/check_err.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "maxipay",
+      "endpointUrl": "/b/external/multi/maxipay/pay",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_maxipay/pay.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "qr_transfer_external",
+      "endpointUrl": "/v1/messages",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 400,
+            "responseBodyPath": "./response_qr_transfer/external_processing"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "qr_transfer_callback_mts_lewis",
+      "endpointUrl": "/public/invoice/sbp/notification",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 421,
+            "responseBodyPath": "./response_sbp-qr-entity/entity.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sbp-qr-entity",
+      "endpointUrl": "/sbp-qr-entity/v1/merchant",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "brandName"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sbp-qr-entity/entity.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "yandex",
+      "endpointUrl": "/webservice/deposition/api/testIdentification",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "amount"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "enableDynamicResponse": true,
+            "dynamicResponses": [
+              {
+                "placeHolder": "{int}",
+                "type": "BIG_INTEGER",
+                "fieldLength": 32
+              }
+            ],
+            "statusCode": 200,
+            "responseBodyPath": "./response_yandex/check_success.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "yandex",
+      "endpointUrl": "/webservice/deposition/api/makeDeposition",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "amount"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "enableDynamicResponse": true,
+            "dynamicResponses": [
+              {
+                "placeHolder": "{int}",
+                "type": "BIG_INTEGER",
+                "fieldLength": 32
+              }
+            ],
+            "statusCode": 200,
+            "responseBodyPath": "./response_yandex/pay_err30.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "yandex_balance",
+      "endpointUrl": "/yandex_balance",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_yandex/balanceChecker.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "qr_notice",
+      "endpointUrl": "/qrhub-sbp-service/payment/notice",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "data"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 600000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_qr_notice/success"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "mts_point_registration",
+      "endpointUrl": "/PaymentProcessingXMLEndpointTestProxy/TestPaymentProcessorDispatcher",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ESPP_0110001"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_espp/mts_mobile/reg_points/resultCode_66_cypher"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "A3",
+      "endpointUrl": "/a3pay_ext/frontSupport/soA3PaymentGate",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ns2:checkPaymentRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response/checkpayment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ns2:paymentRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response/pay.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "getPaymentStatusRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response/paystatus.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ns2:personalAccountInfoRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response/personalAccountInfo.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sberArgregat",
+      "endpointUrl": "/",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "function=GetProducts"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response/get_products_mts.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "mobidram 7231",
+      "endpointUrl": "/mobidram",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=nmtcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_mobidram/nmtcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=clientcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_mobidram/clientcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_mobidram/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=getstatus"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_mobidram/status.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "bakai_mob",
+      "endpointUrl": "/bakaimob",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=nmtcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_bakai-mob/nmtcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=clientcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_bakai-mob/clientcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_bakai-mob/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=getstatus"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_bakai-mob/status.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "aloqa",
+      "endpointUrl": "/aloqa",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=nmtcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_aloqa/nmtcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=clientcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_aloqa/clientcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_aloqa/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=getstatus"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_aloqa/status.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "SBP",
+      "endpointUrl": "/sbp",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<ReqCalcData>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sbpv2/calcdata.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "amount"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sbp/D02.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<ReqCheckPay>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sbpv2/checkpay.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<ReqConfirmPay>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sbpv2/confirmpay.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<ReqPayStatus>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sbpv2/paystatus.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "smart-vista sfd",
+      "endpointUrl": "/vista",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "resource"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 400,
+            "responseBodyPath": "./response_smartvista/sfd.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "megafon",
+      "endpointUrl": "/external-emulator/emulator/megafon/SPP/HTTP_ADD_PAYMENT",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9030000000",
+              "9030000001"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_megafon/megafon.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "megafon_balance",
+      "endpointUrl": "/external-emulator/emulator/megafon/SPP/HTTP_KASSA_BALANCE",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              ""
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_megafon/balance.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "russia-bank",
+      "endpointUrl": "/gastest_gate/gatePay",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<ReqReestrSendForRows>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsReestrSendForRows.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<AbonentID>0000000001"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 15000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsCheckAbonent_1.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<AbonentID>0000000002"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsCheckAbonent_2.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<AbonentID>0000000003"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsCheckAbonent_3.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<AbonentID>0000000004"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsCheckAbonent_4.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<AbonentID>0000000005"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsCheckAbonent_same.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<AbonentID>0000000006"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsCheckAbonent_topay0.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "<Pay>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_russia_bank/AnsCreateOrder.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "smart-vista-cardId",
+      "endpointUrl": "/dc-lws-cards/internal/v1/cards",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_smart-vista/cardId_success.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "doskredo 7384",
+      "endpointUrl": "/doskredo",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "nmtcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_doskredo/nmtcheck.xml"
+          }
+        },
+        {
+          "enable": false,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACCOUNT=1111111111111111&ACTION=nmtcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_doskredo/nmtcheck_abonent_not_found.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "clientcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_doskredo/clientcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_doskredo/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "getstatus"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_doskredo/getstatus.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sber_telekarta",
+      "endpointUrl": "/telekarta",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "Step=1"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_telekarta/step_1.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "Step=2"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_telekarta/step_2.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "check"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_telekarta/check.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_telekarta/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "getbalance"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_telekarta/getbalance.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "getCustData",
+      "endpointUrl": "/paymenthub-gateway/getCustData",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 6000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_getCustData/client.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sber_trikolor",
+      "endpointUrl": "/trikolor",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "Step=1"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_trikolor/step_1.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "Step=2"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_trikolor/step_2.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "check"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_trikolor/check.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_trikolor/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "getbalance"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sber_trikolor/getbalance.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sber_qr",
+      "endpointUrl": "/sberqr",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "check"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sberbank/check_bad_delimiter.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sberbank/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "getbalance"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sberbank/getbalance.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "ph-lws-transfer",
+      "endpointUrl": "/ph-lws-transfer/confirm",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_ph-lws-transfer/confirm_success.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "ph-lws-transfer",
+      "endpointUrl": "/ph-lws-transfer/status",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_ph-lws-transfer/status_success.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "check-cards",
+      "endpointUrl": "/check-cards/getCardInfo",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\"bin\": \"6"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_check-cards/check-cards_up"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\"bin\": \"9"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_check-cards/check-cards_up"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\"bin\": \"8"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_check-cards/check-cards_up"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\"bin\": \"4"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_check-cards/check-cards_mtsb"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\"bin\":\"4"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_check-cards/check-cards_mtsb"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\"bin\": \"5"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_check-cards/check-cards_mtsb"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "number"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_check-cards/check-cards_mtsb"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sfd",
+      "endpointUrl": "/json",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "DEPOSIT_OCT"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 4000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sfd/allow"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "PAYMENT_BPA"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 4000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sfd/allow"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "CHECK_SBP_C2C_BPA"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 4000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sfd/allow"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "TRANSFER_SBP_C2C_BPA"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 4000000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_sfd/allow"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "card2card_verify",
+      "endpointUrl": "/card2card/verify",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "35000"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 3000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/verify.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0000000000"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 3000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/verify.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "23000"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 3000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/verify.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "33333"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 3000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/verify_error.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "00000311"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 3000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/verify.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "v2/card2card_verify",
+      "endpointUrl": "/v2/card2card/verify",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/verify.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "card2card_pay",
+      "endpointUrl": "/card2card/pay",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "35000001"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/pay.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "2300011"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/pay.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "00000311"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/pay.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "3500011"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/pay.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0000000000"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/esw106.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "2300013"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/timeout.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "card2card_check",
+      "endpointUrl": "/card2card/check",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 11000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_card2card/state.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "kapital-international",
+      "endpointUrl": "/dummy/token",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "username"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 5000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/token"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "kapital-international",
+      "endpointUrl": "/dummy/fee",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "currencyCode"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 50000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/fee"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "kapital-international",
+      "endpointUrl": "/dummy/prepare",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "6222040000030038"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "5260980000278595"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "416973"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "539215"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "4278310021875430"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "4809388886227309"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "5356610110589616"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "6216610100016870491"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/prepare_for_error"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "kapital-international",
+      "endpointUrl": "/dummy/execute",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "operationId"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 600000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/execute"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "66666"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 600000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/execute_for_error"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "kapital-international",
+      "endpointUrl": "/dummy/check-operation",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "15444"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/check-operation"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "66666"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_kapital-international/check-operation_107"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "zetplat",
+      "endpointUrl": "/zetplat",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "agents.getAvailableServices"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_zetplat/getAvailableServices.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "transactions.create"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_zetplat/create.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "transactions.pay"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_zetplat/pay_state-3.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "transactions.status"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_zetplat/status_32240.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "dushanbe-sbp",
+      "endpointUrl": "/dushanbesbp",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "nmtcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_dushanbe-sbp/nmtcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "clientcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_dushanbe-sbp/clientcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_dushanbe-sbp/payment.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "getstatus"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_dushanbe-sbp/getstatus.xml"
+          }
+        }
+      ]
+    },
+//    {
+//      "serviceName": "universalbank-sbp",
+//      "endpointUrl": "/universalbank_sbp/login",
+//      "enable": true,
+//      "specificMockSettings": [
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "login"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/login.json"
+//          }
+//        }
+//      ]
+//    },
+//    {
+//      "serviceName": "universalbank-sbp",
+//      "endpointUrl": "/universalbank_sbp/check",
+//      "enable": true,
+//      "specificMockSettings": [
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "\\d{12}"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./src/main/resources/response/profitable_error.json"
+//          }
+//        },
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "998914016675"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer_info_da2ca.json"
+//          }
+//        },
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "998978393002"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer_info_ca2da_coin.json"
+//          }
+//        },
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "998993633475"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer_info_da2ca_coin.json"
+//          }
+//        },
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "992918565609"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer_info.json"
+//          }
+//        },
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "999999999999"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer_info_302.json"
+//          }
+//        },
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "99871978999"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 200
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer_info_99871978999.json"
+//          }
+//        }
+//      ]
+//    },
+//    {
+//      "serviceName": "universalbank-sbp",
+//      "endpointUrl": "/universalbank_sbp/pay",
+//      "enable": true,
+//      "specificMockSettings": [
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "transfer"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 2000
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer.json"
+//          }
+//        }
+//      ]
+//    },
+//    {
+//      "serviceName": "universalbank-sbp",
+//      "endpointUrl": "/universalbank_sbp/status",
+//      "enable": true,
+//      "specificMockSettings": [
+//        {
+//          "enable": true,
+//          "requestMockConditions": {
+//            "containsValue": [
+//              "transfer.check"
+//            ]
+//          },
+//          "responseSetting": {
+//            "sleepRule": {
+//              "isEnabled": true,
+//              "sleepMs": 40000
+//            },
+//            "statusCode": 200,
+//            "responseBodyPath": "./response_universalbank-sbp/transfer_check.json"
+//          }
+//        }
+//      ]
+//    },
+    {
+      "serviceName": "ph-clients-service",
+      "endpointUrl": "/ph-clients-service/getMultitransferId",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "agentId"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_ph-clients-service/client_success.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "tele2",
+      "endpointUrl": "/tele2",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACT=0"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tele2/check.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACT=1"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tele2/pay.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "kapital_uz",
+      "endpointUrl": "/kapitalbank/operation/credit/visa",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 60000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response/payment.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "kapital_mc",
+      "endpointUrl": "/kapitalbank/get-card-info",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 0
+            },
+            "statusCode": 401,
+            "responseBodyPath": "./response/card-info.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "find_mobile_operator",
+      "endpointUrl": "/api/v1/noncat/queries/msisdnInfo",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0950000030"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_find_mobile_operator/mMTS_success.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9038021722"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_find_mobile_operator/mBEELINE_success.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9770000000"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_find_mobile_operator/mTELE2_success.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9259285379"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_find_mobile_operator/mMEGAFON_success.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9027322170"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_find_mobile_operator/mTINKOFF_success.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "75554000001"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_find_mobile_operator/mAKOS_success.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9997890765"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_find_mobile_operator/mJUTA_success.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "Tinkoff",
+      "endpointUrl": "/tinkoff",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0123456789"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_success.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9250665638"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_success.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9826963571"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_success.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "5213241234567198"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_success.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "5213243770348330"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_success.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0234593288"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error141.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "2200700187669873"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error142.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "79636023143"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error143.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "79636022144"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error144.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "3052235957"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error161.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0704697762"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error163.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "2200701022539024"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error164.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0188300052"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error191.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "78005557778"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error301.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0188300051"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/check_error400.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "\"pay\""
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_tinkoff/pay_success.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "PSCB",
+      "endpointUrl": "/pscb",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "RegisterCheckRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_pscb/RegisterCheckResponse_8357.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "SendPaymentRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_pscb/SendPaymentResponse_8357.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "CheckStatusRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_pscb/CheckStatusResponse_8357.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "GetCheckResultRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_pscb/GetCheckResultResponse_8357.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "GetDirectoryRequest"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 10000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_pscb/GetCheckResultResponse_8357.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "multitransfer_client",
+      "endpointUrl": "/multitransfer-client/search",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "79056655841"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_multitransfer-client/client_without_type.json.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "79056655842"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_multitransfer-client/client_err_code_400.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "79056655843"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 400,
+            "responseBodyPath": "./response_multitransfer-client/client_http_400.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "multitransfer_accounts",
+      "endpointUrl": "/b/phub/multitransfer-accounts/v3/get/emoneyAccount",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "multitransferClientId"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_multitransfer-accounts/success_emoney_account.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sbp-refund",
+      "endpointUrl": "/sbp/refund",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "merchantId"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "enableDynamicResponse": true,
+            "dynamicResponses": [
+              {
+                "placeHolder": "{trxId}",
+                "type": "UUID_SEPARATED",
+                "fieldLength": 32
+              }
+            ],
+            "statusCode": 200,
+            "responseBodyPath": "./response_sbp-refund/refund.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "homecredit",
+      "endpointUrl": "/homecredit",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "function=payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_homecredit/payment_success"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "TermId=53786"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_homecredit/check_error"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "function=check"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": true,
+              "sleepMs": 200
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_homecredit/check_success"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_esim_products",
+      "endpointUrl": "/finvoka_esim/product",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/esim/products_prod.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_esim_pay",
+      "endpointUrl": "/finvoka_esim/buy",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "email"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/esim/pay.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_vaucher_pay",
+      "endpointUrl": "/finvoka1/v2/order/232",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "email"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/vaucher/pay.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_vaucher_products",
+      "endpointUrl": "/finvoka1/v2/products/",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/vaucher/products.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_steam_check",
+      "endpointUrl": "/finvoka/check/1",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/steam/check_finvoka.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_steam_pay",
+      "endpointUrl": "/finvoka/pay/1",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/steam/pay_finvoka.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_game_products",
+      "endpointUrl": "/b/external/finvoka/webhook/v2/topup/price",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/games/products.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_game_check",
+      "endpointUrl": "/b/external/finvoka/webhook/v2/topup/check",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/games/check.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_game_status",
+      "endpointUrl": "/b/external/finvoka/webhook/v2/topup/status",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/games/status.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "finvoka_game_pay",
+      "endpointUrl": "/b/external/finvoka/webhook/v2/topup/pay",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 100000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_finvoka/games/pay.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "courses_mt",
+      "endpointUrl": "/b/multitransfer-rates/v1/getRate",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "6c6ff18d-755e-415a-a192-e333077e7045"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_courses_mt/courses_maxipay.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ca7f63e3-a062-48c3-aadc-d92df3909a68"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_courses_mt/courses_kapital.json"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "521f1a3f-d654-45cd-8e86-ccee81b33d0f"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_courses_mt/courses_maxipay.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "hamkor_sbp",
+      "endpointUrl": "/hamkorsbp",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=nmtcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_hamkor_sbp/nmtcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=clientcheck"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_hamkor_sbp/clientcheck.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "ACTION=payment"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_hamkor_sbp/payment.xml"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "mts_espp_mobile",
+      "endpointUrl": "/mts_espp_mobile",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0104090"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_espp/mts_mobile/operation/pay.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "9770000000"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_espp/mts_mobile/operation/check.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "0104010"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_espp/mts_mobile/operation/check.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "</ESPP_0104010>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_espp/mts_mobile/operation/check_error.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "</ESPP_0104085>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_espp/mts_mobile/operation/status.xml"
+          }
+        },
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue": [
+              "</ESPP_0104051>"
+            ]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 1000
+            },
+            "statusCode": 200,
+            "responseBodyPath": "./response_espp/mts_mobile/operation/status.xml"
+          }
+        }
+      ]
+    }
+  ]
+}

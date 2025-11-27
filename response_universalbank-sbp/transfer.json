@@ -1,0 +1,25 @@
+{
+  "jsonrpc":"2.0",
+  "id":1165003480,
+  "status":true,
+  "origin":"transfer",
+  "result":{
+    "tr_id":"b05787ae-f72e-4831-bc2b-ee7b8198b293",
+    "receiver":{
+      "card_number":"Vasilyev502",
+      "credit_amount":25000000.00,
+      "currency":"UZS",
+      "state":20,
+      "tr_timestamp":"2022-05-05T07:42:14.000000Z"
+    },
+    "exchange":{
+      "amount":135000.00,
+      "rate":0.0054,
+      "currency":"RUB"
+    }
+  },
+  "host":{
+    "host":"UniSoft",
+    "time_stamp":"2022-05-05 12:42:33"
+  }
+}

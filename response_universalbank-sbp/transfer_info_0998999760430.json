@@ -1,0 +1,32 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "owner": "MUSAFAR MUZAFAROV",
+    "card_number": "860014******0043",
+    "bank": "Universal Bank",
+    "Residence": "UZ",
+    "Account": "E85490-78342",
+    "fundsType": "BnkFulAth",
+    "state": 0,
+    "limits": {
+      "amount": 99999000000,
+      "count": 999999
+    },
+    "exchange": {
+      "amount": 118.11,
+      "rate": 0.00787402,
+      "currency": "RUB"
+    },
+    "credit_exchange": {
+      "credit_amount": 15000.50,
+      "currency": "UZS"
+    }
+  },
+  "id": 1008863426,
+  "status": true,
+  "origin": "transfer.info",
+  "host": {
+    "host": "sbp.unired.uz",
+    "timestamp": "2023-07-26 10:45:36.496159"
+  }
+}

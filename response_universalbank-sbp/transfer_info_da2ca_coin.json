@@ -1,0 +1,34 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+	"owner": "ISROILKHON MUZAFAROV",
+	"card_number": "986013******8879",
+	"bank": "Mkredit",
+	"Residence": "UZ",
+	"Account": "226183520188450933148903",
+	"fundsType": "BnkFulAth",
+	"state": 0,
+	"limits": {
+	    "amount": 99999000000,
+	    "count": 999999
+	},
+	"exchange": {
+	    "amount": 104.166,
+	    "rate": 0.0069444444,
+	    "": 144.0,
+	    "currency": "RUB"
+	},
+	"credit_exchange": {
+	    "credit_amount": 15000.0,
+	    "commission": 500.0,
+	    "currency": "UZS"
+	}
+    },
+    "id": 2213071047,
+    "status": true,
+    "origin": "transfer.info",
+    "host": {
+	"host": "sbp.unired.uz",
+	"timestamp": "2024-07-29 03:48:15.888187"
+    }
+}

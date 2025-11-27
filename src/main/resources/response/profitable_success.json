@@ -1,0 +1,10 @@
+{
+  "result": 0,
+  "resultMessage": "Успешно",
+  "transactionId": 10058465,
+  "agentTransactionId": 311209803,
+  "currencyRate": "Курс конвертации RUB/USD 5.1800",
+  "rate": 5.18,
+  "finalAmount": 927.2200,
+  "currency": "USD"
+}

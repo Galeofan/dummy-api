@@ -1,0 +1,14 @@
+{
+    "jsonrpc": "2.0",
+    "error": {
+	"code": 302,
+	"message": "You do not have access to the method!"
+    },
+    "id": 2298662304,
+    "status": false,
+    "origin": "transfer.info",
+    "host": {
+	"host": "sbp.unired.uz",
+	"timestamp": "2024-09-23 21:40:18.249685"
+    }
+}

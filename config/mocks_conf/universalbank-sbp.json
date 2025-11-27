@@ -1,0 +1,27 @@
+{
+  "endpointMocks": [
+    {
+      "serviceName": "universalbank-sbp",
+      "endpointUrl": "/universalbank_sbp/check",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue":
+            ["998995378765"]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200
+            },
+            "isTiv": true,
+            "statusCode": 200,
+            "responseBodyPath": "./response_universalbank-sbp/transfer_info_ca2da.json"
+          }
+        }
+      ]
+    }
+  ]
+}

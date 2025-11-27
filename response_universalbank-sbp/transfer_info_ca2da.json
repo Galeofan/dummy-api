@@ -1,0 +1,33 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+	"owner": "HUMOYUNBEK ODILJONOV",
+	"card_number": "986023******5527",
+	"bank": "Universal",
+	"Residence": "UZ",
+	"Account": "226181546730089590494698",
+	"fundsType": "BnkFulAth",
+	"state": 0,
+	"limits": {
+	    "amount": 99999000000,
+	    "count": 999999
+	},
+	"exchange": {
+	    "amount": {amount},
+	    "rate": 0.0064102564,
+	    "currency": "RUB"
+	},
+	"credit_exchange": {
+	    "credit_amount": {credit_amount},
+	    "commission": 25074.0,
+	    "currency": "UZS"
+	}
+    },
+    "id": {id},
+    "status": true,
+    "origin": "transfer.info",
+    "host": {
+	"host": "sbp.unired.uz",
+	"timestamp": "2024-07-29 09:22:08.929299"
+    }
+}
