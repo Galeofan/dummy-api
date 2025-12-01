@@ -2,21 +2,44 @@
   "endpointMocks": [
     {
       "serviceName": "universalbank-sbp",
-      "endpointUrl": "/universalbank_sbp/check",
+      "endpointUrl": "/test",
       "enable": true,
       "specificMockSettings": [
         {
           "enable": true,
           "requestMockConditions": {
             "containsValue":
-            ["998995378765"]
+            ["code"]
           },
           "responseSetting": {
             "sleepRule": {
               "isEnabled": false,
               "sleepMs": 200
             },
-            "isTiv": true,
+            "isTiv": false,
+            "statusCode": 200,
+            "responseBodyPath": "./response_universalbank-sbp/transfer_info_ca2da.json"
+          }
+        }
+      ]
+    },
+    {
+      "serviceName": "sms",
+      "endpointUrl": "/sms",
+      "enable": true,
+      "specificMockSettings": [
+        {
+          "enable": true,
+          "requestMockConditions": {
+            "containsValue":
+            ["sms"]
+          },
+          "responseSetting": {
+            "sleepRule": {
+              "isEnabled": false,
+              "sleepMs": 200
+            },
+            "isTiv": false,
             "statusCode": 200,
             "responseBodyPath": "./response_universalbank-sbp/transfer_info_ca2da.json"
           }
