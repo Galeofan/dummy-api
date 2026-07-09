@@ -3,6 +3,7 @@ package ru.mtsbank.soapdummy.mock;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.mtsbank.soapdummy.mock.exception.MockNotFoundException;
@@ -16,6 +17,7 @@ import ru.mtsbank.soapdummy.utils.ReplaceUtils;
 
 import javax.annotation.Nonnull;
 import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -88,124 +90,137 @@ public class DummyService {
         );
     }
 
-        private boolean matchesByRequestBody(String requestBody, String expectedBodyPath) {
-            if (StringUtils.isBlank(expectedBodyPath) || StringUtils.isBlank(requestBody)) {
-                return false;
-            }
-
-            String expectedBody = FileUtils.getFileContent(expectedBodyPath);
-            return requestBody.equals(expectedBody);
-        }
-
-        private boolean matchesByContainsValue(HttpServletRequest httpRequest, String
-        requestBody, Set <String> containsValueSet){
-            if (containsValueSet == null || containsValueSet.isEmpty()) {
-                return false;
-            }
-            String query = httpRequest.getQueryString();
-
-            //Проверка совпадения по строковому литералу
-            boolean containsText = containsValueSet.stream()
-                    .filter(s -> (StringUtils.isNotBlank(query) && query.contains(s)) ||
-                            (StringUtils.isNotBlank(requestBody) && requestBody.contains(s)))
-                    .peek(s -> log.info("Matched by text: " + s))
-                    .count() > 0;
-
-            if (containsText) {
-                return true;
-            }
-
-            //Проверка совпадения по регулярке
-            boolean matchesRegex = containsValueSet.stream()
-                    .filter(s -> (StringUtils.isNotBlank(query) && Pattern.compile(s).matcher(query).find()) ||
-                            (StringUtils.isNotBlank(requestBody) && Pattern.compile(s).matcher(requestBody).find()))
-                    .peek(s -> log.info("Matched by regex: " + s))
-                    .count() > 0;
-
-            if (matchesRegex) {
-                return true;
-            }
-
+    private boolean matchesByRequestBody(String requestBody, String expectedBodyPath) {
+        if (StringUtils.isBlank(expectedBodyPath) || StringUtils.isBlank(requestBody)) {
             return false;
         }
 
-        @Nonnull
-        private ResponseEntity<String> executeRules(SpecificMockSetting setting,
-            HttpServletRequest httpRequest,
-                String requestBody) {
-            log.info("Execute setting rules");
-            runExecutionSleepRule(setting);
-            ResponseEntity<String> responseEntity = buildResponse(setting, httpRequest, requestBody);
-            log.info("Finish mock with returned response: {}", responseEntity);
-            return responseEntity;
+        String expectedBody = FileUtils.getFileContent(expectedBodyPath);
+        return requestBody.equals(expectedBody);
+    }
+
+    private boolean matchesByContainsValue(HttpServletRequest httpRequest, String
+            requestBody, Set <String> containsValueSet){
+        if (containsValueSet == null || containsValueSet.isEmpty()) {
+            return false;
+        }
+        String query = httpRequest.getQueryString();
+
+        //Проверка совпадения по строковому литералу
+        boolean containsText = containsValueSet.stream()
+                .filter(s -> (StringUtils.isNotBlank(query) && query.contains(s)) ||
+                        (StringUtils.isNotBlank(requestBody) && requestBody.contains(s)))
+                .peek(s -> log.info("Matched by text: " + s))
+                .count() > 0;
+
+        if (containsText) {
+            return true;
         }
 
-        /**
-         * Run execution sleep rules, which added in settings file
-         *
-         * @param mockSetting mock setting loaded from file
-         */
-        private void runExecutionSleepRule (SpecificMockSetting mockSetting) {
-            log.info("Run thread sleep execution rule if need");
-            if (!mockSetting.getResponseSetting().getSleepRule().getIsEnabled()) {
-                log.info("Thread sleep is disabled");
-                return;
-            }
-            log.info("Thread sleep execution rule enabled");
-            try {
-                long sleepMs = mockSetting.getResponseSetting().getSleepRule().getSleepMs();
-                log.info("Thread will be sleep on: {} ms", sleepMs);
-                Thread.sleep(sleepMs);
-            } catch (InterruptedException e) {
-                log.error("Error while execution rule of sleep", e);
-                Thread.currentThread().interrupt();
-            }
-            log.info("Finish thread sleep execution rule");
+        //Проверка совпадения по регулярке
+        boolean matchesRegex = containsValueSet.stream()
+                .filter(s -> (StringUtils.isNotBlank(query) && Pattern.compile(s).matcher(query).find()) ||
+                        (StringUtils.isNotBlank(requestBody) && Pattern.compile(s).matcher(requestBody).find()))
+                .peek(s -> log.info("Matched by regex: " + s))
+                .count() > 0;
+
+        if (matchesRegex) {
+            return true;
         }
 
-        /**
-         * Build response
-         *
-         * @param mockSetting setting for mock
-         * @return api response
-         */
-        @Nonnull
-        private ResponseEntity<String> buildResponse(SpecificMockSetting mockSetting, HttpServletRequest
-        httpRequest, String requestBody) {
-            log.info("Build response");
-            if (StringUtils.isNotBlank(mockSetting.getResponseSetting().getResponseBodyPath())) {
-                return buildResponseWithBody(mockSetting, httpRequest, requestBody);
-            } else {
-                return ResponseEntity
-                        .status(mockSetting.getResponseSetting().getStatusCode())
-                        .build();
-            }
-        }
+        return false;
+    }
 
-        /**
-         * Build response with contend body
-         *
-         * @param mockSetting setting for mock
-         * @return api response with body
-         */
-        private ResponseEntity<String> buildResponseWithBody(SpecificMockSetting mockSetting, HttpServletRequest
-        httpRequest, String requestBody) {
-            // Обработка динамических плейсхолдеров
-            if (mockSetting.getResponseSetting().getEnableDynamicResponse()) {
-                return ResponseEntity
-                        .status(mockSetting.getResponseSetting().getStatusCode())
-                        .body(responseHandler.execute(mockSetting));
-                // Обработка ТИВа
-            } else if (Boolean.TRUE.equals(mockSetting.getResponseSetting().getIsTiv())) {
-                return ResponseEntity
-                        .status(mockSetting.getResponseSetting().getStatusCode())
-                        //TODO переделать на обработчик ResponseHandler
-                        .body(ReplaceUtils.tivReplace(FileUtils.getFileContent(mockSetting.getResponseSetting().getResponseBodyPath()), mockSetting, httpRequest, requestBody));
-                // Дефолтная обработка
-            } else {
-                return ResponseEntity
-                        .status(mockSetting.getResponseSetting().getStatusCode())
-                        .body(FileUtils.getFileContent(mockSetting.getResponseSetting().getResponseBodyPath()));
-            }
+    @Nonnull
+    private ResponseEntity<String> executeRules(SpecificMockSetting setting,
+                                                HttpServletRequest httpRequest,
+                                                String requestBody) {
+        log.info("Execute setting rules");
+        runExecutionSleepRule(setting);
+        ResponseEntity<String> responseEntity = buildResponse(setting, httpRequest, requestBody);
+        log.info("Finish mock with returned response: {}", responseEntity);
+        return responseEntity;
+    }
+
+    /**
+     * Run execution sleep rules, which added in settings file
+     *
+     * @param mockSetting mock setting loaded from file
+     */
+    private void runExecutionSleepRule (SpecificMockSetting mockSetting) {
+        log.info("Run thread sleep execution rule if need");
+        if (!mockSetting.getResponseSetting().getSleepRule().getIsEnabled()) {
+            log.info("Thread sleep is disabled");
+            return;
         }
+        log.info("Thread sleep execution rule enabled");
+        try {
+            long sleepMs = mockSetting.getResponseSetting().getSleepRule().getSleepMs();
+            log.info("Thread will be sleep on: {} ms", sleepMs);
+            Thread.sleep(sleepMs);
+        } catch (InterruptedException e) {
+            log.error("Error while execution rule of sleep", e);
+            Thread.currentThread().interrupt();
+        }
+        log.info("Finish thread sleep execution rule");
+    }
+
+    /**
+     * Build response
+     *
+     * @param mockSetting setting for mock
+     * @return api response
+     */
+    @Nonnull
+    private ResponseEntity<String> buildResponse(SpecificMockSetting mockSetting, HttpServletRequest
+            httpRequest, String requestBody) {
+        log.info("Build response");
+        if (StringUtils.isNotBlank(mockSetting.getResponseSetting().getResponseBodyPath())) {
+            return buildResponseWithBody(mockSetting, httpRequest, requestBody);
+        } else {
+            return ResponseEntity
+                    .status(mockSetting.getResponseSetting().getStatusCode())
+                    .build();
+        }
+    }
+
+    /**
+     * Build response with contend body
+     *
+     * @param mockSetting setting for mock
+     * @return api response with body
+     */
+    private ResponseEntity<String> buildResponseWithBody(SpecificMockSetting mockSetting, HttpServletRequest
+            httpRequest, String requestBody) {
+        // Обработка динамических плейсхолдеров
+        if (mockSetting.getResponseSetting().getEnableDynamicResponse()) {
+            return ResponseEntity
+                    .status(mockSetting.getResponseSetting().getStatusCode())
+                    .contentType(getContentType(mockSetting.getResponseSetting().getResponseBodyPath()))
+                    .body(responseHandler.execute(mockSetting));
+            // Обработка ТИВа
+        } else if (Boolean.TRUE.equals(mockSetting.getResponseSetting().getIsTiv())) {
+            return ResponseEntity
+                    .status(mockSetting.getResponseSetting().getStatusCode())
+                    .contentType(getContentType(mockSetting.getResponseSetting().getResponseBodyPath()))
+                    //TODO переделать на обработчик ResponseHandler
+                    .body(ReplaceUtils.tivReplace(FileUtils.getFileContent(mockSetting.getResponseSetting().getResponseBodyPath()), mockSetting, httpRequest, requestBody));
+            // Дефолтная обработка
+        } else {
+            return ResponseEntity
+                    .status(mockSetting.getResponseSetting().getStatusCode())
+                    .contentType(getContentType(mockSetting.getResponseSetting().getResponseBodyPath()))
+                    .body(FileUtils.getFileContent(mockSetting.getResponseSetting().getResponseBodyPath()));
+        }
+    }
+
+    private MediaType getContentType(String responseBodyPath) {
+        if (responseBodyPath != null && responseBodyPath.endsWith(".json")) {
+            return new MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8);
+        }
+        if (responseBodyPath != null && responseBodyPath.endsWith(".xml")) {
+            return new MediaType(MediaType.APPLICATION_XML, StandardCharsets.UTF_8);
+        }
+        return new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8);
+    }
 }
