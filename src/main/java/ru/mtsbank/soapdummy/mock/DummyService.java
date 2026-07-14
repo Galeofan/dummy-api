@@ -11,6 +11,7 @@ import ru.mtsbank.soapdummy.mock.handler.ResponseHandler;
 import ru.mtsbank.soapdummy.mock.setting.DummyCacheStorage;
 import ru.mtsbank.soapdummy.mock.setting.EndpointMockSetting;
 import ru.mtsbank.soapdummy.mock.setting.RequestMockConditions;
+import ru.mtsbank.soapdummy.mock.setting.ResponseSetting;
 import ru.mtsbank.soapdummy.mock.setting.SpecificMockSetting;
 import ru.mtsbank.soapdummy.utils.FileUtils;
 import ru.mtsbank.soapdummy.utils.ReplaceUtils;
@@ -194,33 +195,41 @@ public class DummyService {
             httpRequest, String requestBody) {
         // Обработка динамических плейсхолдеров
         if (mockSetting.getResponseSetting().getEnableDynamicResponse()) {
-            return ResponseEntity
-                    .status(mockSetting.getResponseSetting().getStatusCode())
-                    .contentType(getContentType(mockSetting.getResponseSetting().getResponseBodyPath()))
+            return responseBuilder(mockSetting.getResponseSetting())
                     .body(responseHandler.execute(mockSetting));
             // Обработка ТИВа
         } else if (Boolean.TRUE.equals(mockSetting.getResponseSetting().getIsTiv())) {
-            return ResponseEntity
-                    .status(mockSetting.getResponseSetting().getStatusCode())
-                    .contentType(getContentType(mockSetting.getResponseSetting().getResponseBodyPath()))
+            return responseBuilder(mockSetting.getResponseSetting())
                     //TODO переделать на обработчик ResponseHandler
                     .body(ReplaceUtils.tivReplace(FileUtils.getFileContent(mockSetting.getResponseSetting().getResponseBodyPath()), mockSetting, httpRequest, requestBody));
             // Дефолтная обработка
         } else {
-            return ResponseEntity
-                    .status(mockSetting.getResponseSetting().getStatusCode())
-                    .contentType(getContentType(mockSetting.getResponseSetting().getResponseBodyPath()))
+            return responseBuilder(mockSetting.getResponseSetting())
                     .body(FileUtils.getFileContent(mockSetting.getResponseSetting().getResponseBodyPath()));
         }
     }
 
-    private MediaType getContentType(String responseBodyPath) {
+    private ResponseEntity.BodyBuilder responseBuilder(ResponseSetting responseSetting) {
+        ResponseEntity.BodyBuilder builder = ResponseEntity.status(responseSetting.getStatusCode());
+        MediaType contentType = getContentType(responseSetting);
+        if (contentType != null) {
+            builder.contentType(contentType);
+        }
+        return builder;
+    }
+
+    private MediaType getContentType(ResponseSetting responseSetting) {
+        if (StringUtils.isNotBlank(responseSetting.getContentType())) {
+            return MediaType.parseMediaType(responseSetting.getContentType());
+        }
+
+        String responseBodyPath = responseSetting.getResponseBodyPath();
         if (responseBodyPath != null && responseBodyPath.endsWith(".json")) {
             return new MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8);
         }
         if (responseBodyPath != null && responseBodyPath.endsWith(".xml")) {
-            return new MediaType(MediaType.APPLICATION_XML, StandardCharsets.UTF_8);
+            return new MediaType(MediaType.TEXT_XML, StandardCharsets.UTF_8);
         }
-        return new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8);
+        return null;
     }
 }
